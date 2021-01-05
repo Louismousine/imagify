@@ -1,6 +1,7 @@
 package ca.shopify.backendchallenge.service;
 
 import ca.shopify.backendchallenge.dto.ImageDTO;
+import ca.shopify.backendchallenge.exception.AmazonException;
 import ca.shopify.backendchallenge.model.ImageEntity;
 import ca.shopify.backendchallenge.model.User;
 import ca.shopify.backendchallenge.repository.ImageRepository;
@@ -44,7 +45,7 @@ public class ImageService {
         }
     }
 
-    public ImageDTO uploadImage(User user, MultipartFile file, boolean isPrivate, String tags){
+    public ImageDTO uploadImage(User user, MultipartFile file, boolean isPrivate, String tags) throws AmazonException {
         ImageEntity img = new ImageEntity();
         String link = this.amazonClient.uploadFile(file);
         img.setLabels(detectLabelsWithAmazonAI(link.split("/")[4]));

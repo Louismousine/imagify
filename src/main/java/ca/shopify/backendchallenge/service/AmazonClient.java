@@ -1,5 +1,6 @@
 package ca.shopify.backendchallenge.service;
 
+import ca.shopify.backendchallenge.exception.AmazonException;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
@@ -36,7 +37,7 @@ public class AmazonClient {
         this.s3client = new AmazonS3Client(credentials);
     }
 
-    public String uploadFile(MultipartFile multipartFile) {
+    public String uploadFile(MultipartFile multipartFile) throws AmazonException {
 
         String fileUrl = "";
         try {
@@ -46,7 +47,7 @@ public class AmazonClient {
             uploadFileTos3bucket(fileName, file);
             file.delete();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new AmazonException(e.getMessage());
         }
         return fileUrl;
     }
