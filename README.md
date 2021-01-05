@@ -1,12 +1,9 @@
-# Imagify
-
 <p align="center"><img src="https://github.com/Louismousine/imagify/blob/master/logo.JPG"/></p>
-
 Imagify is my submission for the [Shopify Backend Challenge for Summer 2021](https://docs.google.com/document/d/1ZKRywXQLZWOqVOHC4JkF3LqdpO3Llpfk_CkZPR8bjak/edit). It is an image repository written in Spring Boot, and it has the following features:
 * Create an account
 * Login
 * Upload an image
-* Get images that are similar to the requested image (similarity is based the [Amazon Rekognition API](https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html))
+* Get images that are similar to the requested image (similarity is based on the [Amazon Rekognition API](https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html))
 * Edit the image's visibility to private / public
 * Edit the tags of an image
 * Search images by tags
