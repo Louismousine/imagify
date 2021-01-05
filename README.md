@@ -53,13 +53,13 @@ In the endpoints section, I will refer to two specific bodies that can be return
 * `api/user/login` - POST - Logs in an existing account to retrieve the JWT token. Example JSON: `{
 	"password":"UserPW",
 	"username":"User"
-}`. The response is a UserDTO which holds the API token to be used in subsequent requests. If using the Postman collection, store this token in the token variable in the Imagify collection.
+}`. The response is a UserDTO which holds the API token to be used in subsequent requests. If using the Postman collection, store this token in the token variable in the Imagify collection. 
 
 ### Image
 
-For the remaining endpoints, the JWT token is always required as a header for authentication purposes. Also, the return type is always an ImageDTO (or a list of ImageDTOs where applicable) except for the delete endpoint.
+For the remaining endpoints, the JWT token is always required as a header for authentication purposes. One has to log in/register to get this token. Also, the return type is always an ImageDTO (or a list of ImageDTOs where applicable) except for the delete endpoint.
 
-* `api/image/upload?tags={}&isPrivate={}` - POST - Uploads an image that is then stored in the AWS bucket. The tags parameter in the URL is a string that holds words from which the image can be looked up in a search. For multiple tags, separate the tags by commas as follows "shopify,image,repository". The isPrivate query parameter is a boolean that determines if the image will be accessible by other users if false or if it will only be accessible to the owner if true. This endpoint also takes in an image of type JPG or PNG (IMPORTANT: The Rekognition API demands the file type to have this capitalization. I accept png and jpg too, but submitting such an image will not benefit from the similarity feature). In Postman, one can select "form-data" under body, add a key "imageFile" with the image file as a value. The response is an ImageDTO which holds the link to the stored picture.
+* `api/image/upload?tags={}&isPrivate={}` - POST - Uploads an image that is then stored in the AWS bucket. The tags parameter in the URL is a string that holds words from which the image can be looked up in a search. For multiple tags, separate the tags by commas as follows "shopify,image,repository". The isPrivate query parameter is a boolean that determines if the image will be accessible by other users if false or if it will only be accessible to the owner if true. This endpoint also takes in an image of type JPG or PNG (However, note that in some cases the Rekognition API rejects the images if they are too large or of an unsupported type in which case the image will not have labels by which to be searched). In Postman, one can select "form-data" under body, add a key "imageFile" with the image file as a value. The response is an ImageDTO which holds the link to the stored picture.
 
 * `api/image/{id}` - GET - Accesses an image by its id. Returns an ImageDTO if the image exists and the requester is either the owner of the picture or the picture is public. Returns a 400 error otherwise.
 
