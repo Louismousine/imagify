@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -24,6 +26,10 @@ public class ImageEntity {
 
     // the list of tags to search - one string with words separated by commas
     private String tags;
+
+    // the list of lbaels that the Amazon Rekognition API has detected
+    @ElementCollection
+    private List<String> labels;
 
     @EqualsAndHashCode.Exclude
     @ManyToMany(cascade = CascadeType.DETACH)

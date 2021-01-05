@@ -3,6 +3,8 @@ package ca.shopify.backendchallenge.dto;
 import ca.shopify.backendchallenge.model.ImageEntity;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class ImageDTO {
     private long id;
@@ -12,6 +14,7 @@ public class ImageDTO {
     // the list of tags to search
     private String[] tags;
     private int numberOfLikes;
+    private List<String> labels;
 
     // converts an image to an image DTO
     public static ImageDTO convertImageToDTO(ImageEntity img){
@@ -23,6 +26,7 @@ public class ImageDTO {
         imgDto.setTags(img.getTags().split(","));
         if(img.getLikers()!=null)
         imgDto.setNumberOfLikes(img.getLikers().size());
+        imgDto.setLabels(img.getLabels());
         return imgDto;
     }
 }
