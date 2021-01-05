@@ -387,6 +387,31 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Find similar images using Amazon AI",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}api/image/findSimilar/1",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"image",
+						"findSimilar",
+						"1"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -413,14 +438,14 @@
 	],
 	"variable": [
 		{
-			"id": "772ee47c-9a36-49ac-87eb-fb492d9d8cfc",
+			"id": "74504d67-2eba-4a4b-a3d7-1fa9da114b06",
 			"key": "url",
 			"value": "http://image-repo-shopify.herokuapp.com/"
 		},
 		{
-			"id": "c0ecea77-25bf-4b0e-9e96-0041efd2b0a9",
+			"id": "642dcca7-188a-43c1-abaa-f995a82bcdb9",
 			"key": "token",
-			"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIiwiaWF0IjoxNjA5ODE1NzQ1LCJleHAiOjE2MDk4MTkzNDV9.Gv-zOjVahoyLKYO-uXuUTFIEYRfxryOfLSopGb0SaCo"
+			"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIiwiaWF0IjoxNjA5ODMxOTM3LCJleHAiOjE2MDk4MzU1Mzd9._r52BitvN61JNCwdOfQXqvhcn5JGs_H76DzDxd5uKFQ"
 		}
 	],
 	"protocolProfileBehavior": {}
