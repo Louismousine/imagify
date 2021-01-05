@@ -7,7 +7,6 @@ import ca.shopify.backendchallenge.model.ImageEntity;
 import ca.shopify.backendchallenge.model.User;
 import ca.shopify.backendchallenge.repository.ImageRepository;
 import ca.shopify.backendchallenge.repository.UserRepository;
-import ca.shopify.backendchallenge.service.AmazonClient;
 import ca.shopify.backendchallenge.service.ImageService;
 import ca.shopify.backendchallenge.service.UserService;
 import com.sipios.springsearch.anotation.SearchSpec;
@@ -53,9 +52,13 @@ public class ImageController {
     @PostMapping("/upload")
     public ResponseEntity<?> uploadImage(@RequestParam("imageFile") MultipartFile file, @RequestHeader String token, @RequestParam boolean isPrivate, @RequestParam String tags) throws IOException {
         try {
-            User user = userService.validateApiToken(token);
-            ImageDTO image = imageService.uploadImage(user, file, isPrivate, tags);
-            return new ResponseEntity<>(image, HttpStatus.OK);
+            if (file.getContentType() != null && (file.getContentType().contains("jpg") || file.getContentType().contains("png"))) {
+                User user = userService.validateApiToken(token);
+                ImageDTO image = imageService.uploadImage(user, file, isPrivate, tags);
+                return new ResponseEntity<>(image, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.UNSUPPORTED_MEDIA_TYPE);
+            }
         } catch (TokenException e) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
@@ -178,7 +181,7 @@ public class ImageController {
             imageRepository.save(ie);
             return new ResponseEntity<>(ImageDTO.convertImageToDTO(ie), HttpStatus.OK);
         }
-        return new ResponseEntity<>("No image has this id",HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("No image has this id", HttpStatus.BAD_REQUEST);
     }
 
 

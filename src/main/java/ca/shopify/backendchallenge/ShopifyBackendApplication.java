@@ -24,13 +24,4 @@ public class ShopifyBackendApplication {
     SpringApplication.run(ShopifyBackendApplication.class, args);
   }
 
-  /**
-   * Just an arbitrary welcome message to the root of the application.
-   * @return
-   */
-  @RequestMapping("/")
-  public String greeting(){
-    return "Does it actually deploy automatically with travis to heroku?";
-  }
-
 }
