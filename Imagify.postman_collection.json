@@ -400,14 +400,14 @@
 					}
 				],
 				"url": {
-					"raw": "{{url}}api/image/findSimilar/1",
+					"raw": "{{url}}api/image/findSimilar/8",
 					"host": [
 						"{{url}}api"
 					],
 					"path": [
 						"image",
 						"findSimilar",
-						"1"
+						"8"
 					]
 				}
 			},
@@ -438,12 +438,12 @@
 	],
 	"variable": [
 		{
-			"id": "74504d67-2eba-4a4b-a3d7-1fa9da114b06",
+			"id": "db51b860-f2e0-4545-84f1-a09e85cba94c",
 			"key": "url",
 			"value": "http://image-repo-shopify.herokuapp.com/"
 		},
 		{
-			"id": "642dcca7-188a-43c1-abaa-f995a82bcdb9",
+			"id": "4053c610-13b8-41f5-a467-c6535be9109f",
 			"key": "token",
 			"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIiwiaWF0IjoxNjA5ODMxOTM3LCJleHAiOjE2MDk4MzU1Mzd9._r52BitvN61JNCwdOfQXqvhcn5JGs_H76DzDxd5uKFQ"
 		}
