@@ -1,0 +1,14 @@
+package ca.shopify.backendchallenge.exception;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(value = HttpStatus.BAD_REQUEST)
+public class RequestException extends IllegalArgumentException {
+    // default ID
+    private static final long serialVersionUID = 1L;
+
+    public RequestException(String msg) {
+        super(msg);
+    }
+}

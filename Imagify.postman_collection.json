@@ -1,0 +1,427 @@
+{
+	"info": {
+		"_postman_id": "50de21b1-a5be-48ec-8796-93d6d289adda",
+		"name": "Imagify",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d4b7f90b-ae5f-437c-bcab-774e2f9db077",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"password\":\"UserPW\",\n\t\"username\":\"User\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}api/user/register",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d4b7f90b-ae5f-437c-bcab-774e2f9db077",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"password\":\"UserPW\",\n\t\"username\":\"User\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}api/user/login",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload image",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "isPrivate",
+						"value": "false",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "tags",
+						"value": "louis",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "imageFile",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "imageFile",
+							"type": "file",
+							"src": "/C:/Users/louis/Pictures/mypics/75553019_2662993437121434_3389314969953632256_o(1).jpg"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}api/image/upload?tags=louis&isPrivate=false",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"image",
+						"upload"
+					],
+					"query": [
+						{
+							"key": "tags",
+							"value": "louis"
+						},
+						{
+							"key": "isPrivate",
+							"value": "false"
+						}
+					]
+				},
+				"description": "Change the tags and the visibility in the url, and add the picture in the body as a form data object."
+			},
+			"response": []
+		},
+		{
+			"name": "Edit tags",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}api/image/tags/1?tags=dinner,friends,louis",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"image",
+						"tags",
+						"1"
+					],
+					"query": [
+						{
+							"key": "tags",
+							"value": "dinner,friends,louis"
+						}
+					]
+				},
+				"description": "Edit the tags by sending in a comma separated string with the tags as a request parameter."
+			},
+			"response": []
+		},
+		{
+			"name": "Search by tags",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}api/image/find?search=tags:*louis*",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"image",
+						"find"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "tags:*louis*"
+						}
+					]
+				},
+				"description": "Search by changing the search query in the request param. The request should look like: search=tags:*_TAG_*"
+			},
+			"response": []
+		},
+		{
+			"name": "Get specific image",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}api/image/1",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"image",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a user's images",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}api/image/user/User",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"image",
+						"user",
+						"User"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all images",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}api/image/",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"image",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Like/dislike",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}api/image/like/1",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"image",
+						"like",
+						"1"
+					]
+				},
+				"description": "Likes or dislikes the image given in the URL."
+			},
+			"response": []
+		},
+		{
+			"name": "Make private / public",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}api/image/private/1",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"image",
+						"private",
+						"1"
+					]
+				},
+				"description": "Sets the image to private / public depending on the current state. i.e. a public image will be set to private and vice versa."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete images",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}api/image?ids=1,2",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"image"
+					],
+					"query": [
+						{
+							"key": "ids",
+							"value": "1,2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "22572841-3f3d-4087-9f82-d055c2900651",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "bc895282-6aab-40a3-8e6b-bd1e135f8835",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "772ee47c-9a36-49ac-87eb-fb492d9d8cfc",
+			"key": "url",
+			"value": "http://image-repo-shopify.herokuapp.com/"
+		},
+		{
+			"id": "c0ecea77-25bf-4b0e-9e96-0041efd2b0a9",
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIiwiaWF0IjoxNjA5ODE1NzQ1LCJleHAiOjE2MDk4MTkzNDV9.Gv-zOjVahoyLKYO-uXuUTFIEYRfxryOfLSopGb0SaCo"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
