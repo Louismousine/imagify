@@ -1,6 +1,7 @@
 package ca.shopify.backendchallenge.controller;
 
 import ca.shopify.backendchallenge.dto.ImageDTO;
+import ca.shopify.backendchallenge.exception.AmazonException;
 import ca.shopify.backendchallenge.exception.RequestException;
 import ca.shopify.backendchallenge.exception.TokenException;
 import ca.shopify.backendchallenge.model.ImageEntity;
@@ -50,7 +51,7 @@ public class ImageController {
 
     // Upload a single image. The tags are a single string with comma separated values.
     @PostMapping("/upload")
-    public ResponseEntity<?> uploadImage(@RequestParam("imageFile") MultipartFile file, @RequestHeader String token, @RequestParam boolean isPrivate, @RequestParam String tags) throws IOException {
+    public ResponseEntity<?> uploadImage(@RequestParam("imageFile") MultipartFile file, @RequestHeader String token, @RequestParam boolean isPrivate, @RequestParam String tags) throws IOException, AmazonException {
         try {
             if (file.getContentType() != null && file.getContentType().contains("image")) {
                 User user = userService.validateApiToken(token);
