@@ -3,6 +3,7 @@ package ca.shopify.backendchallenge.service;
 import ca.shopify.backendchallenge.dto.UserDTO;
 import ca.shopify.backendchallenge.exception.RegisterException;
 import ca.shopify.backendchallenge.configuration.JWTTokenProvider;
+import ca.shopify.backendchallenge.exception.TokenException;
 import ca.shopify.backendchallenge.model.User;
 import ca.shopify.backendchallenge.repository.UserRepository;
 import org.junit.Assert;
@@ -208,7 +209,7 @@ public class TestUserService {
     /* VALIDATE TOKEN TESTS */
 
     @Test
-    public void validateApiTokenSuccess() {
+    public void validateApiTokenSuccess() throws TokenException {
         userService.validateApiToken("VALID");
     }
 
@@ -217,7 +218,7 @@ public class TestUserService {
         try {
             userService.validateApiToken("");
 
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | TokenException e) {
             assertEquals("Empty API token", e.getMessage());
         }
     }
@@ -227,7 +228,7 @@ public class TestUserService {
         try {
             userService.validateApiToken(null);
 
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | TokenException e) {
             assertEquals("Empty API token", e.getMessage());
         }
     }
@@ -236,7 +237,7 @@ public class TestUserService {
     public void validateApiTokenNoPoiserMatch() {
         try {
             userService.validateApiToken("NOMATCH");
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | TokenException e) {
             assertEquals("No user has this token", e.getMessage());
         }
     }
