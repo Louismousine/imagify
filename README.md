@@ -15,7 +15,9 @@ where all of the operations aside from register and login require a JWT token to
 
 ## Using the application
 
-The application is hosted at https://image-repo-shopify.herokuapp.com/. To test the endpoints, use [this Postman collection](https://github.com/Louismousine/imagify/blob/master/Imagify.postman_collection.json) in Postman to send the requests.
+The application is hosted at https://image-repo-shopify.herokuapp.com/. To test the endpoints, use [this Postman collection](https://github.com/Louismousine/imagify/blob/master/Imagify.postman_collection.json) in Postman to send the requests. 
+
+IMPORTANT NOTE: Since it is hosted on Heroku, it takes the application a few seconds to start up after receiving the first request. It will respond quickly after that!
 
 ## Response bodies
 In the endpoints section, I will refer to two specific bodies that can be returned. They have the following structures (with example values provided):
